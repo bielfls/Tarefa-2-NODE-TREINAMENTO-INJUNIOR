@@ -1,14 +1,12 @@
 import { app } from './app.js'
-
-const host = '0.0.0.0'
-const port = 3333
+import { env } from './env/index.js'
 
 app
   .listen({
-    host,
-    port,
+    host: env.HOST,
+    port: env.PORT,
   })
   .then(() => {
-    const url = `http://localhost${port}`
+    const url = `http://localhost${env.PORT}`
     console.log(`HTTP Server Running at ${url}`)
   })

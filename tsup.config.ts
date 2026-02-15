@@ -6,5 +6,5 @@ export default defineConfig({
     outDir: 'build',
     sourcemap: true,
     shims: true,
-    target: 'esnext v'
+    target: 'esnext'
 })
