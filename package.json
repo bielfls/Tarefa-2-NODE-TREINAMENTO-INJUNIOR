@@ -5,7 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "tsx watch src/server.ts",
+    "start:prod": "node build/server.js",
+    "build": "tsup"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +17,8 @@
     "sup": "0.0.4",
     "tsx": "4.21.0",
     "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "fastify": "5.7.4"
   }
 }
