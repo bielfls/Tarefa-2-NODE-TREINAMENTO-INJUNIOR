@@ -7,13 +7,16 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "start:prod": "node build/server.js",
-    "build": "tsup"
+    "build": "tsup",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "prettier --check \"src/**/*.ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "25.2.3",
+    "prettier": "3.8.1",
     "sup": "0.0.4",
     "tsx": "4.21.0",
     "typescript": "5.9.3"
