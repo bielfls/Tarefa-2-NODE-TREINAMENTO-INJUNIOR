@@ -1,0 +1,11 @@
+@apiUrl = http://localhost:3333
+
+POST {{apiUrl}}/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "LALALA",
+  "foto": "https://github.com/teste.png",
+  "email": "teste@email.com",
+  "password": "senha_segura_123"
+}
