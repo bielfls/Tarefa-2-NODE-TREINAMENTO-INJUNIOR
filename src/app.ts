@@ -62,13 +62,13 @@ app.post('/posts', async (request, reply) => {
     return reply.status(201).send(post)
 })
 
-app.get('/users', async (request, reply) => {
+app.get('/users', async (_request, reply) => {
     const users = await prisma.user.findMany()
 
     return reply.status(200).send(users)
 })
 
-app.get('/posts', async (request, reply) => {
+app.get('/posts', async (_request, reply) => {
     const posts = await prisma.post.findMany()
 
     return reply.status(200).send(posts)
