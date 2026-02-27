@@ -15,11 +15,14 @@ datasource db {
 
 model User {
   id       Int @id @default(autoincrement())
+  publicId String @unique @map("public_id") @default(uuid())
   name     String
   email    String @unique
   passwordHash String @map("password_hash") //ensinado nas aulas
   foto     String
   posts    Post[]
+  comments Comment[]
+  likes    Like[]
   
   @@map("users")
 }
@@ -31,6 +34,34 @@ model Post {
   userId    Int      @map("user_id")
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now()) @map("created_at")
+  comments  Comment[]
+  likes     Like[]
 
   @@map("posts")
+}
+
+model Comment {
+  id        Int @id @default(autoincrement())
+  conteudo  String
+  userId    Int      @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    Int      @map("post_id")
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  likes     Like[]
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("comments")
+}
+
+model Like {
+  id        Int @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId    Int?     @map("post_id")
+  post      Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  commentId    Int?      @map("comment_id")
+  comment      Comment?     @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("likes")
 }
