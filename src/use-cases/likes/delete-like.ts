@@ -14,7 +14,7 @@ export class DeleteLikeUseCase {
     if (!like) {
       throw new ResourceNotFoundError()
     }
-    
+
     await this.likesRepository.delete(id)
   }
 }

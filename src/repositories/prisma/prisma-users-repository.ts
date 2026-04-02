@@ -1,5 +1,5 @@
-import { prisma } from '@/libs/prisma.js'
 import type { Prisma } from '@/@types/prisma/client.js'
+import { prisma } from '@/libs/prisma.js'
 
 export class PrismaUsersRepository {
   async findByEmail(email: string) {
@@ -8,7 +8,7 @@ export class PrismaUsersRepository {
         email,
       },
     })
-    
+
     return user
   }
 
@@ -16,21 +16,21 @@ export class PrismaUsersRepository {
     const user = await prisma.user.create({
       data,
     })
-    
+
     return user
   }
 
   async findById(publicId: string) {
-    const user = await prisma.user.findUnique({ where: { publicId }})
-    
+    const user = await prisma.user.findUnique({ where: { publicId } })
+
     return user
   }
 
   async delete(id: number) {
     return await prisma.user.delete({
-        where: {
-            id
-        },
+      where: {
+        id,
+      },
     })
   }
 
@@ -41,11 +41,11 @@ export class PrismaUsersRepository {
   async update(id: number, data: Prisma.UserUpdateInput) {
     const user = await prisma.user.update({
       where: {
-            id
-        },
-        data
+        id,
+      },
+      data,
     })
-    
+
     return user
   }
 }

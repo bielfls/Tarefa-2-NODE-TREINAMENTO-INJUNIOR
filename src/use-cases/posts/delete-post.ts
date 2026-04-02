@@ -14,7 +14,7 @@ export class DeletePostUseCase {
     if (!post) {
       throw new ResourceNotFoundError()
     }
-    
+
     await this.postsRepository.delete(id)
   }
 }

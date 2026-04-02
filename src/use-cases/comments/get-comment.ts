@@ -12,7 +12,7 @@ export class GetCommentUseCase {
     const comment = await this.commentsRepository.findById(id)
 
     if (!comment) {
-      throw new ResourceNotFoundError
+      throw new ResourceNotFoundError()
     }
 
     return { comment }

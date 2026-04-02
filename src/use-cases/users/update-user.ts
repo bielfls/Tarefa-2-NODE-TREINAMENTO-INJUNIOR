@@ -1,5 +1,5 @@
-import type { UsersRepository } from '@/repositories/users-repository.js'
 import { hash } from 'bcryptjs'
+import type { UsersRepository } from '@/repositories/users-repository.js'
 import { ResourceNotFoundError } from '../errors/resourse-not-found-errors.js'
 import { UserAlreadyExistsError } from '../errors/user-already-exists-error.js'
 
@@ -14,7 +14,13 @@ interface UpdateUserUseCaseRequest {
 export class UpdateUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute({ publicId, name, foto, email, password }: UpdateUserUseCaseRequest) {
+  async execute({
+    publicId,
+    name,
+    foto,
+    email,
+    password,
+  }: UpdateUserUseCaseRequest) {
     const user = await this.usersRepository.findById(publicId)
 
     if (!user) {
@@ -24,14 +30,14 @@ export class UpdateUserUseCase {
     if (email) {
       const userWithSameEmail = await this.usersRepository.findByEmail(email)
       if (userWithSameEmail && userWithSameEmail.publicId !== publicId) {
-        throw new UserAlreadyExistsError
+        throw new UserAlreadyExistsError()
       }
     }
 
-    let passwordHash: string | undefined = undefined
-    
+    let passwordHash: string | undefined
+
     if (password) {
-      passwordHash =  await hash(password, 10)
+      passwordHash = await hash(password, 10)
     }
 
     await this.usersRepository.update(user.id, {

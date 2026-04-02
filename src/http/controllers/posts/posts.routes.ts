@@ -1,13 +1,13 @@
-import type { FastifyInstance } from "fastify";
-import { verifyJwt } from "@/http/middlewares/verify-jwt.js";
-import { createPost } from "./create-post.js";
-import { listPosts } from "./list-posts.js";
-import { getPost } from "./get-post.js";
-import { updatePost } from "./update-post.js";
-import { deletePostById } from "./delete-post.js";
-import { createComment } from "../comments/create-comment.js";
-import { listPostComments } from "../comments/list-post-comments.js";
-import { listPostLikes } from "../likes/list-post-likes.js";
+import type { FastifyInstance } from 'fastify'
+import { verifyJwt } from '@/http/middlewares/verify-jwt.js'
+import { createComment } from '../comments/create-comment.js'
+import { listPostComments } from '../comments/list-post-comments.js'
+import { listPostLikes } from '../likes/list-post-likes.js'
+import { createPost } from './create-post.js'
+import { deletePostById } from './delete-post.js'
+import { getPost } from './get-post.js'
+import { listPosts } from './list-posts.js'
+import { updatePost } from './update-post.js'
 
 export async function postsRoutes(app: FastifyInstance) {
   app.post('/', { onRequest: verifyJwt }, createPost)
@@ -17,9 +17,8 @@ export async function postsRoutes(app: FastifyInstance) {
   app.get('/:id', getPost)
 
   app.put('/:id', { onRequest: verifyJwt }, updatePost)
-  
-  app.delete('/:id', { onRequest: verifyJwt }, deletePostById)
 
+  app.delete('/:id', { onRequest: verifyJwt }, deletePostById)
 
   app.post('/:postId/comments', { onRequest: verifyJwt }, createComment)
 

@@ -15,7 +15,7 @@ export class UpdatePostUseCase {
     const post = await this.postsRepository.findById(id)
 
     if (!post) {
-        throw new ResourceNotFoundError()
+      throw new ResourceNotFoundError()
     }
 
     await this.postsRepository.update(id, {

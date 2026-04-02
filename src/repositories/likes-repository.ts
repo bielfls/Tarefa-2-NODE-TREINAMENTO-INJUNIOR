@@ -1,4 +1,4 @@
-import type { Prisma, Like } from '@/@types/prisma/client.js'
+import type { Like, Prisma } from '@/@types/prisma/client.js'
 
 export interface LikesRepository {
   create(data: Prisma.LikeUncheckedCreateInput): Promise<Like>

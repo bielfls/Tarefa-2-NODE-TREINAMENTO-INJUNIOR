@@ -1,4 +1,4 @@
-import type { FastifyRequest, FastifyReply } from 'fastify'
+import type { FastifyReply, FastifyRequest } from 'fastify'
 import { PrismaPostsRepository } from '@/repositories/prisma/prisma-posts-repository.js'
 import { ListPostsUseCase } from '@/use-cases/posts/list-posts.js'
 

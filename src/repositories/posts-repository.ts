@@ -1,4 +1,4 @@
-import type { Prisma, Post } from '@/@types/prisma/client.js'
+import type { Post, Prisma } from '@/@types/prisma/client.js'
 
 export interface PostsRepository {
   create(data: Prisma.PostUncheckedCreateInput): Promise<Post>

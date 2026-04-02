@@ -9,14 +9,16 @@ interface CreateCommentUseCaseRequest {
 }
 
 export class CreateCommentUseCase {
-  constructor(private postsRepository: PostsRepository, private commentsRepository: CommentsRepository) {}
+  constructor(
+    private postsRepository: PostsRepository,
+    private commentsRepository: CommentsRepository,
+  ) {}
 
   async execute({ conteudo, userId, postId }: CreateCommentUseCaseRequest) {
-
     const post = await this.postsRepository.findById(postId)
 
-    if(!post) {
-        throw new ResourceNotFoundError()
+    if (!post) {
+      throw new ResourceNotFoundError()
     }
 
     const comment = await this.commentsRepository.create({

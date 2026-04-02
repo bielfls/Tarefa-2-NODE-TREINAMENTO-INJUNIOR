@@ -14,7 +14,7 @@ export class DeleteCommentUseCase {
     if (!comment) {
       throw new ResourceNotFoundError()
     }
-    
+
     await this.commentsRepository.delete(id)
   }
 }

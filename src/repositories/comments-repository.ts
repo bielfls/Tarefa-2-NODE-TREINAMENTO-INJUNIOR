@@ -1,4 +1,4 @@
-import type { Prisma, Comment } from '@/@types/prisma/client.js'
+import type { Comment, Prisma } from '@/@types/prisma/client.js'
 
 export interface CommentsRepository {
   create(data: Prisma.CommentUncheckedCreateInput): Promise<Comment>

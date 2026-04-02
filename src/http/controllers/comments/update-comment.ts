@@ -1,17 +1,19 @@
+import type { FastifyReply, FastifyRequest } from 'fastify'
+import { z } from 'zod'
 import { PrismaCommentsRepository } from '@/repositories/prisma/prisma-comments-repository.js'
 import { UpdateCommentUseCase } from '@/use-cases/comments/update-comment.js'
 import { ResourceNotFoundError } from '@/use-cases/errors/resourse-not-found-errors.js'
-import type { FastifyRequest, FastifyReply } from 'fastify'
-import { z } from 'zod'
 
-
-export async function updateComment(request: FastifyRequest, reply: FastifyReply) {
+export async function updateComment(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const updateParamsSchema = z.object({
-      id: z.coerce.number(),
+    id: z.coerce.number(),
   })
 
   const updateCommentBodySchema = z.object({
-      conteudo: z.string().min(1).optional(),
+    conteudo: z.string().min(1).optional(),
   })
 
   const { id } = updateParamsSchema.parse(request.params)
@@ -23,16 +25,15 @@ export async function updateComment(request: FastifyRequest, reply: FastifyReply
 
     await updateCommentUseCase.execute({
       id,
-      conteudo
+      conteudo,
     })
 
     return reply.status(204).send()
-
-   } catch (error) {
-    if(error instanceof ResourceNotFoundError) {
-      return reply.status(404).send({ message: error.message})
+  } catch (error) {
+    if (error instanceof ResourceNotFoundError) {
+      return reply.status(404).send({ message: error.message })
     }
-        
+
     throw error
   }
 }

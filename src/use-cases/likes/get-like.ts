@@ -12,7 +12,7 @@ export class GetLikeUseCase {
     const like = await this.likesRepository.findById(id)
 
     if (!like) {
-      throw new ResourceNotFoundError
+      throw new ResourceNotFoundError()
     }
 
     return { like }

@@ -12,7 +12,7 @@ export class GetPostUseCase {
     const post = await this.postsRepository.findById(id)
 
     if (!post) {
-      throw new ResourceNotFoundError
+      throw new ResourceNotFoundError()
     }
 
     return { post }

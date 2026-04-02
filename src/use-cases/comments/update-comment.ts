@@ -14,7 +14,7 @@ export class UpdateCommentUseCase {
     const comment = await this.commentsRepository.findById(id)
 
     if (!comment) {
-        throw new ResourceNotFoundError()
+      throw new ResourceNotFoundError()
     }
 
     await this.commentsRepository.update(id, {

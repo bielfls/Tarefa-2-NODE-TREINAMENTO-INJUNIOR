@@ -1,48 +1,48 @@
-import { prisma } from '@/libs/prisma.js'
 import type { Prisma } from '@/@types/prisma/client.js'
+import { prisma } from '@/libs/prisma.js'
 
 export class PrismaLikesRepository {
   async create(data: Prisma.LikeUncheckedCreateInput) {
     return await prisma.like.create({
-        data
+      data,
     })
   }
 
   async delete(id: number) {
     return await prisma.like.delete({
-        where: {
-            id
-        },
+      where: {
+        id,
+      },
     })
   }
 
   async findById(id: number) {
     return await prisma.like.findFirst({
-        where: {id}
+      where: { id },
     })
   }
 
   async findManyByUserId(userId: number) {
     return await prisma.like.findMany({
-        where: {
-            userId
-        }
+      where: {
+        userId,
+      },
     })
   }
 
   async findManyByPostId(postId: number) {
     return await prisma.like.findMany({
-        where: {
-            postId
-        }
+      where: {
+        postId,
+      },
     })
   }
 
   async findManyByCommentId(commentId: number) {
     return await prisma.like.findMany({
-        where: {
-            commentId
-        }
+      where: {
+        commentId,
+      },
     })
   }
 }

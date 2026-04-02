@@ -1,10 +1,10 @@
-import { prisma } from '@/libs/prisma.js'
 import type { Prisma } from '@/@types/prisma/client.js'
+import { prisma } from '@/libs/prisma.js'
 
 export class PrismaCommentsRepository {
   async create(data: Prisma.CommentUncheckedCreateInput) {
     return await prisma.comment.create({
-        data
+      data,
     })
   }
 
@@ -14,38 +14,38 @@ export class PrismaCommentsRepository {
 
   async findById(id: number) {
     return await prisma.comment.findFirst({
-        where: {id}
+      where: { id },
     })
   }
 
   async findManyByUserId(userId: number) {
     return await prisma.comment.findMany({
-        where: {
-            userId
-        }
+      where: {
+        userId,
+      },
     })
   }
 
   async findManyByPostId(postId: number) {
     return await prisma.comment.findMany({
-        where: {
-            postId
-        }
+      where: {
+        postId,
+      },
     })
   }
 
   async delete(id: number) {
     return await prisma.comment.delete({
-        where: {
-            id
-        },
+      where: {
+        id,
+      },
     })
   }
 
   async update(id: number, data: Prisma.CommentUncheckedUpdateInput) {
     return await prisma.comment.update({
-        where: {id},
-        data
+      where: { id },
+      data,
     })
   }
 }

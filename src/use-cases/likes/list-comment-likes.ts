@@ -1,32 +1,33 @@
 import type { Like } from '@/@types/prisma/client.js'
-import { ResourceNotFoundError } from '../errors/resourse-not-found-errors.js'
-import type { LikesRepository } from '@/repositories/likes-repository.js'
 import type { CommentsRepository } from '@/repositories/comments-repository.js'
+import type { LikesRepository } from '@/repositories/likes-repository.js'
+import { ResourceNotFoundError } from '../errors/resourse-not-found-errors.js'
 
 interface ListCommentLikesUseCaseRequest {
   commentId: number
 }
 
 type ListCommentLikesUseCaseResponse = {
-    likes: Like[]
+  likes: Like[]
 }
 
 export class ListCommentLikesUseCase {
-    constructor(
+  constructor(
     private likesRepository: LikesRepository,
-    private commentsRepository: CommentsRepository
-    ) {}
-        
-    async execute({ commentId }: ListCommentLikesUseCaseRequest): Promise<ListCommentLikesUseCaseResponse> {
+    private commentsRepository: CommentsRepository,
+  ) {}
 
-        const comment = await this.commentsRepository.findById(commentId)
+  async execute({
+    commentId,
+  }: ListCommentLikesUseCaseRequest): Promise<ListCommentLikesUseCaseResponse> {
+    const comment = await this.commentsRepository.findById(commentId)
 
-        if (!comment) {
-            throw new ResourceNotFoundError()
-        }
-
-        const likes = await this.likesRepository.findManyByCommentId(commentId)
-
-        return { likes }
+    if (!comment) {
+      throw new ResourceNotFoundError()
     }
+
+    const likes = await this.likesRepository.findManyByCommentId(commentId)
+
+    return { likes }
+  }
 }
