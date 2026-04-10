@@ -11,6 +11,11 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
 
   JWT_SECRET: z.string(),
+
+  EMAIL_USER: z.email(),
+  EMAIL_PASS: z.string(),
+
+  CRON_SCHEDULE: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

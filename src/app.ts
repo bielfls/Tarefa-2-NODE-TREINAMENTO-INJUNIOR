@@ -4,6 +4,7 @@ import fastify from 'fastify'
 import { ZodError, z } from 'zod'
 import { env } from './env/index.js'
 import { appRoutes } from './http/routes.js'
+import { startDailyHighlightsJob } from './jobs/send-highlights-job.js'
 
 export const app = fastify()
 
@@ -33,3 +34,5 @@ app.setErrorHandler((error, _request, reply) => {
 
   return reply.status(500).send({ message: 'Erro interno do servidor!' })
 })
+
+startDailyHighlightsJob()
