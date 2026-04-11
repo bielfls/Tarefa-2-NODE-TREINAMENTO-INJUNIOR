@@ -7,4 +7,5 @@ export interface UsersRepository {
   delete(id: number): Promise<User>
   list(): Promise<User[]>
   update(id: number, data: Prisma.UserUpdateInput): Promise<User>
+  findbyToken(token: string): Promise<User | null>
 }

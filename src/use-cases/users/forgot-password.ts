@@ -22,6 +22,13 @@ export class ForgotPasswordUseCase {
 
     const passwordToken = randomBytes(TOKEN_LENGTH).toString('hex')
 
+    const tokenExpiresAt = new Date(Date.now() + EXPIRES_IN_MINUTES * 60 * 1000)
+
+    await this.usersRepository.update(user.id, {
+      token: passwordToken,
+      tokenExpiresAt,
+    })
+
     const resetLink = `http://localhost:3333/reset-password?token=${passwordToken}`
     //aqui usei a ajuda do gemini para ajudar na estilização do email só pra ver bonitinho kkkk
     await sendEmail({

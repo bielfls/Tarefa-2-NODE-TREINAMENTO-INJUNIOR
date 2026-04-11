@@ -23,6 +23,8 @@ model User {
   posts    Post[]
   comments Comment[]
   likes    Like[]
+  token          String?
+  tokenExpiresAt DateTime?
   
   @@map("users")
 }

@@ -48,4 +48,14 @@ export class PrismaUsersRepository {
 
     return user
   }
+
+  async findbyToken(token: string) {
+    const user = await prisma.user.findFirst({
+      where: {
+        token,
+      },
+    })
+
+    return user
+  }
 }

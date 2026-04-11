@@ -10,6 +10,7 @@ import { listUsers } from './list-users.js'
 import { register } from './register.js'
 import { updateUser } from './update-user.js'
 import { forgotPassword } from './forgot-password.js'
+import { resetPassword } from './reset-password.js'
 
 export async function usersRoutes(app: FastifyInstance) {
   app.post('/', register)
@@ -29,6 +30,8 @@ export async function usersRoutes(app: FastifyInstance) {
   app.get('/:publicId/comments', listUserComments)
 
   app.post('/password/forgot', forgotPassword)
+
+  app.patch('/password/reset', resetPassword)
 }
 
 export async function authRoutes(app: FastifyInstance) {
