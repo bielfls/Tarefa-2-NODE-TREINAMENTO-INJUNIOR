@@ -1,8 +1,8 @@
 import type { FastifyReply, FastifyRequest } from 'fastify'
+import { redis } from '@/libs/redis.js'
 import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository.js'
 import { ListUsersUseCase } from '@/use-cases/users/list-users.js'
 import { UserPresenter } from '../presenters/user-presenter.js'
-import { redis } from '@/libs/redis.js'
 
 export async function listUsers(_request: FastifyRequest, reply: FastifyReply) {
   try {
