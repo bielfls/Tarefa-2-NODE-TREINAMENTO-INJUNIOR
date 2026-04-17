@@ -1,5 +1,5 @@
-import { env } from '@/env/index.js' 
 import nodemailer, { type SentMessageInfo } from 'nodemailer'
+import { env } from '@/env/index.js'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 interface SendEmailRequest {
   to: string
   subject: string
-  message?: string 
+  message?: string
   html: string
 }
 
@@ -30,7 +30,7 @@ export async function sendEmail({
       to,
       subject,
       text: message,
-      html, 
+      html,
     })
 
     console.log(`E-mail enviado com sucesso para ${to}! ID: ${info.messageId}`)

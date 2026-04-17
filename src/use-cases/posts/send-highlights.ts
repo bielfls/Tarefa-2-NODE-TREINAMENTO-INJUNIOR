@@ -5,14 +5,14 @@ export class SendHighlightsUseCase {
     console.log('busca pelos destaques do dia...')
 
     const mockUsers = [
-      { name: 'Gabriel Felis', email: 'gabrielmfelis@gmail.com' }
+      { name: 'Gabriel Felis', email: 'gabrielmfelis@gmail.com' },
     ]
 
     const topPosts24h = [
       { id: 1, titulo: 'Como largar o lol', likes: 300 },
       { id: 2, titulo: 'Como ficar challenger em lol', likes: 120 },
       { id: 3, titulo: 'Eu não aguento mais lol', likes: 135 },
-      { id: 4, titulo: 'Como sair do bronze no lol', likes: 240}
+      { id: 4, titulo: 'Como sair do bronze no lol', likes: 240 },
     ]
 
     if (topPosts24h.length === 0) {
@@ -21,8 +21,10 @@ export class SendHighlightsUseCase {
     }
 
     //logica para ordenar os posts do maior pro menor
-    const postsHtmlList = topPosts24h.sort((a, b) => b.likes - a.likes) 
-    .map(post => `<li>${post.titulo} - ${post.likes} curtidas</li>`).join('')
+    const postsHtmlList = topPosts24h
+      .sort((a, b) => b.likes - a.likes)
+      .map((post) => `<li>${post.titulo} - ${post.likes} curtidas</li>`)
+      .join('')
 
     for (const user of mockUsers) {
       await sendEmail({
