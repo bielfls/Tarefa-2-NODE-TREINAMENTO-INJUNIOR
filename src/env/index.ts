@@ -16,6 +16,10 @@ const envSchema = z.object({
   EMAIL_PASS: z.string(),
 
   CRON_SCHEDULE: z.string(),
+
+  REDIS_HOST: z.string().default('127.0.0.1'),
+  REDIS_PORT: z.coerce.number().default(6379),
+  REDIS_PASSWORD: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)
