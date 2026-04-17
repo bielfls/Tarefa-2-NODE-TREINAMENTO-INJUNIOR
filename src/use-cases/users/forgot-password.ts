@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto'
-import { sendEmail } from '@/utils/send-emails.js'
 import type { UsersRepository } from '@/repositories/users-repository.js'
 import { ResourceNotFoundError } from '@/use-cases/errors/resourse-not-found-errors.js'
+import { sendEmail } from '@/utils/send-emails.js'
 
 interface ForgotPasswordUseCaseRequest {
   email: string

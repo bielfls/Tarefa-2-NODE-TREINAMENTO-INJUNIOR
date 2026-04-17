@@ -5,12 +5,12 @@ import { listUserLikes } from '../likes/list-user-likes.js'
 import { listUserPosts } from '../posts/list-user-posts.js'
 import { authenticate } from './authenticate.js'
 import { deleteUserById } from './delete-user.js'
+import { forgotPassword } from './forgot-password.js'
 import { getUserById } from './get-user-profile.js'
 import { listUsers } from './list-users.js'
 import { register } from './register.js'
-import { updateUser } from './update-user.js'
-import { forgotPassword } from './forgot-password.js'
 import { resetPassword } from './reset-password.js'
+import { updateUser } from './update-user.js'
 
 export async function usersRoutes(app: FastifyInstance) {
   app.post('/', register)
